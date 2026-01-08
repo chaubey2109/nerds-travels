@@ -53,7 +53,7 @@ export function Footer() {
             <ul className="space-y-6">
               <li className="flex items-start space-x-4">
                 <MapPin className="text-orange-500 mt-1 shrink-0" size={20} />
-                <span className="text-gray-400">Varanasi, Uttar Pradesh, India</span>
+                <span className="text-gray-400">Sundarpur, Lanka, Varanasi, Uttar Pradesh, India</span>
               </li>
               <li className="flex items-center space-x-4">
                 <Phone className="text-orange-500 shrink-0" size={20} />
