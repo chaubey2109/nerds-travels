@@ -1,143 +1,310 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertEnquirySchema, type InsertEnquiry } from "@shared/schema";
+import { z } from "zod";
 import { useCreateEnquiry } from "@/hooks/use-enquiries";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Loader2, Send } from "lucide-react";
-import { motion } from "framer-motion";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandEmpty,
+} from "@/components/ui/command";
+
+import { Check, ChevronsUpDown, Loader2, Send } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+/* ================= SCHEMA ================= */
+const enquirySchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .refine((val) => !/^[0-9]/.test(val), {
+      message: "Name cannot start with a number",
+    }),
+
+  email: z.string().trim().email("Enter a valid email address"),
+
+  phone: z
+    .string()
+    .trim()
+    .regex(/^\+?[0-9]{8,15}$/, "Enter valid phone number with country code"),
+
+  cities: z.array(z.string()).min(1, "Select at least one city"),
+
+  message: z.string().max(500).optional(),
+});
+
+type FormValues = z.infer<typeof enquirySchema>;
+
+const CITY_OPTIONS = [
+  "Kashi (Varanasi)",
+  "Ayodhya",
+  "Prayagraj",
+  "Mathura – Vrindavan",
+];
+
+/* ================= COMPONENT ================= */
 export function EnquiryForm() {
   const mutation = useCreateEnquiry();
-  
-  const form = useForm<InsertEnquiry>({
-    resolver: zodResolver(insertEnquirySchema),
+  const [success, setSuccess] = useState("");
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(enquirySchema),
+    mode: "onBlur",
     defaultValues: {
       name: "",
       email: "",
       phone: "",
+      cities: [],
       message: "",
     },
   });
 
-  function onSubmit(data: InsertEnquiry) {
+  function onSubmit(data: FormValues) {
+    setSuccess("");
+
     mutation.mutate(data, {
       onSuccess: () => {
         form.reset();
+        setSuccess("Enquiry submitted successfully 🙏");
       },
     });
   }
 
+  const selectedCities = form.watch("cities");
+
   return (
-    <div className="w-full max-w-lg mx-auto bg-white rounded-3xl shadow-2xl shadow-orange-900/10 p-8 md:p-10 border border-orange-100 relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full blur-3xl -mr-16 -mt-16 opacity-50 pointer-events-none" />
-      
-      <div className="relative z-10">
-        <h3 className="text-3xl font-display font-bold text-gray-900 mb-2">Start Your Journey</h3>
-        <p className="text-gray-500 mb-8 font-medium">Fill out the form below and we'll help you plan the perfect spiritual experience.</p>
+    <div
+      className="
+        w-full
+        max-w-lg
+        mx-auto
+        px-4 sm:px-6
+        py-8 sm:py-10
+        rounded-3xl
+        bg-white/95 backdrop-blur
+        shadow-[0_20px_60px_rgba(0,0,0,0.12)]
+        border
+      "
+    >
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2">
+        Plan Your Spiritual Journey
+      </h2>
+      <p className="text-gray-500 text-sm sm:text-base text-center mb-6 sm:mb-8">
+        Share your details & preferred destinations
+      </p>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-gray-700 font-semibold">Full Name</FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="e.g. Rahul Sharma" 
-                      {...field} 
-                      className="rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 bg-gray-50/50 h-12"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 font-semibold">Email</FormLabel>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-5 sm:space-y-6"
+        >
+          {/* NAME */}
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name *</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Your full name"
+                    className="h-11 text-base"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* EMAIL */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email *</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    type="email"
+                    placeholder="your@email.com"
+                    className="h-11 text-base"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* PHONE */}
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number *</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="+91XXXXXXXXXX"
+                    className="h-11 text-base"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* MULTI CITY */}
+          <FormField
+            control={form.control}
+            name="cities"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Cities to Visit *</FormLabel>
+
+                <Popover>
+                  <PopoverTrigger asChild>
                     <FormControl>
-                      <Input 
-                        placeholder="hello@example.com" 
-                        {...field} 
-                        className="rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 bg-gray-50/50 h-12"
-                      />
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          "w-full h-11 justify-between text-left text-base",
+                          !field.value.length && "text-muted-foreground"
+                        )}
+                      >
+                        <span className="truncate">
+                          {field.value.length
+                            ? field.value.join(", ")
+                            : "Select cities"}
+                        </span>
+                        <ChevronsUpDown className="h-4 w-4 opacity-50" />
+                      </Button>
                     </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 font-semibold">Phone</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="+91 98765 43210" 
-                        {...field} 
-                        className="rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 bg-gray-50/50 h-12"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                  </PopoverTrigger>
 
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-gray-700 font-semibold">Message (Optional)</FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder="Tell us about your travel plans or specific interests in Kashi..." 
-                      className="resize-none rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 bg-gray-50/50 min-h-[120px]"
-                      {...field} 
-                      value={field.value || ""}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                  <PopoverContent
+                    className="
+                      w-[--radix-popover-trigger-width]
+                      max-h-64
+                      p-0
+                      overflow-y-auto
+                    "
+                  >
+                    <Command>
+                      <CommandEmpty>No city found</CommandEmpty>
+                      <CommandGroup>
+                        {CITY_OPTIONS.map((city) => {
+                          const selected = field.value.includes(city);
+                          return (
+                            <CommandItem
+                              key={city}
+                              onSelect={() =>
+                                field.onChange(
+                                  selected
+                                    ? field.value.filter((c) => c !== city)
+                                    : [...field.value, city]
+                                )
+                              }
+                              className="flex items-center gap-3 py-2"
+                            >
+                              <div className="w-4">
+                                {selected && (
+                                  <Check className="h-4 w-4 text-orange-600" />
+                                )}
+                              </div>
+                              <span className="text-sm sm:text-base">
+                                {city}
+                              </span>
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
 
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button 
-                type="submit" 
-                disabled={mutation.isPending}
-                className="w-full h-14 text-lg font-bold rounded-xl bg-gradient-to-r from-primary to-orange-600 hover:from-primary/90 hover:to-orange-600/90 text-white shadow-xl shadow-orange-500/25 transition-all duration-300"
-              >
-                {mutation.isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send Enquiry
-                    <Send className="ml-2 h-5 w-5" />
-                  </>
-                )}
-              </Button>
-            </motion.div>
-          </form>
-        </Form>
-      </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* MESSAGE */}
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message (Optional)</FormLabel>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    rows={4}
+                    placeholder="Any special requirements, dates, etc."
+                    className="text-base"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* SUBMIT */}
+          <Button
+            type="submit"
+            disabled={mutation.isPending}
+            className="
+              w-full
+              h-12 sm:h-14
+              text-base sm:text-lg
+              font-semibold
+              bg-orange-600 hover:bg-orange-500
+            "
+          >
+            {mutation.isPending ? (
+              <>
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                Submit Enquiry
+                <Send className="ml-2 h-5 w-5" />
+              </>
+            )}
+          </Button>
+
+          {success && (
+            <p className="text-green-600 text-center text-sm sm:text-base font-medium">
+              {success}
+            </p>
+          )}
+        </form>
+      </Form>
     </div>
   );
 }

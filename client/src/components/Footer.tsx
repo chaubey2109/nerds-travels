@@ -10,7 +10,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <h2 className="text-3xl font-display font-bold text-orange-400">Nerd Travels</h2>
+            <h2 className="text-3xl font-display font-bold text-orange-400">Nerds Travel</h2>
             <p className="text-gray-400 leading-relaxed">
               Experience the spiritual capital of India with guides who know every narrow lane, ancient temple, and hidden gem of Kashi.
             </p>
@@ -68,7 +68,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Nerd Travels. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nerds Travel. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
