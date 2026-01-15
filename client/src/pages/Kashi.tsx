@@ -14,7 +14,7 @@ export default function Kashi() {
       <Navigation />
 
       {/* HERO */}
-      <section className="relative h-[75vh] flex items-center justify-center text-center px-4">
+      <section className="relative h-[65vh] sm:h-[75vh] flex items-center justify-center text-center px-4">
         <div className="absolute inset-0">
           <img
             src={heroImg}
@@ -25,38 +25,38 @@ export default function Kashi() {
         </div>
 
         <div className="relative z-10 max-w-4xl text-white">
-          <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 text-amber-200">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-4 text-amber-200">
             Kashi (Varanasi)
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-2">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-2">
             The Eternal City of Light on the Sacred Banks of the Ganga
           </p>
-          <p className="text-lg text-white/80 tracking-wide">
+          <p className="text-base sm:text-lg text-white/80 tracking-wide">
             Moksha • Bhakti • Ganga • Shiva
           </p>
         </div>
       </section>
 
       {/* ABOUT */}
-      <section className="py-24 px-4 bg-white">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+      <section className="py-16 md:py-24 px-4 bg-white">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center">
           <img
             src={ghatImg}
             alt="Kashi Ghats"
-            className="w-full h-[45vh] object-cover rounded-3xl shadow-xl"
+            className="w-full h-64 sm:h-[45vh] object-cover rounded-3xl shadow-xl"
           />
 
           <div>
-            <h2 className="text-3xl font-display font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold mb-6">
               About Kashi
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-4">
+            <p className="text-base sm:text-base sm:text-lg text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
               Kashi, the City of Shiva, is where legends, devotion, and romance
               flow like the sacred waters of the Ganga. Nestled between the holy
               rivers Varuna and Assi, its ghats—Manikarnika and Harishchandra—
               whisper tales of sacrifice, love, and unwavering faith.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 text-sm sm:text-base leading-relaxed">
               Believed to grant moksha, Kashi is not just a city—it is a living
               story where souls and emotions meet eternity, where devotion and
               romance feel inseparable.
@@ -66,13 +66,13 @@ export default function Kashi() {
       </section>
 
       {/* EXPERIENCES */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-16 md:py-24 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-center mb-14">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-center mb-10 md:mb-14">
             Experiences in Kashi
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {[
               {
                 img: mandirImg,
@@ -100,13 +100,13 @@ export default function Kashi() {
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="h-60 w-full object-cover"
+                  className="h-52 sm:h-60 w-full object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -117,13 +117,13 @@ export default function Kashi() {
       </section>
 
       {/* WHY US */}
-      <section className="py-24 px-4 bg-white">
+      <section className="py-16 md:py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-center mb-14">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-center mb-10 md:mb-14">
             Why Travel With Nerds Travel
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {[
               {
                 title: "Temple Tours",
@@ -145,10 +145,10 @@ export default function Kashi() {
                 key={item.title}
                 className="rounded-3xl border p-8 text-center hover:shadow-lg transition"
               >
-                <h3 className="text-2xl font-extrabold mb-4">
+                <h3 className="text-xl sm:text-2xl font-extrabold mb-4">
                   {item.title}
                 </h3>
-                <p className="text-gray-700 text-lg">
+                <p className="text-gray-700 text-base sm:text-lg">
                   {item.desc}
                 </p>
               </div>
@@ -158,18 +158,18 @@ export default function Kashi() {
       </section>
 
       {/* ITINERARY */}
-      <section className="py-24 px-4 bg-orange-50">
+      <section className="py-16 md:py-24 px-4 bg-orange-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-display font-bold text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-center mb-10 md:mb-12">
             Kashi Itinerary (2 Days – Local Style)
           </h2>
 
           <div className="space-y-6">
             <details className="bg-white p-6 rounded-2xl shadow">
-              <summary className="cursor-pointer text-xl font-bold">
+              <summary className="cursor-pointer text-lg sm:text-xl font-bold">
                 Day 1 – Ghats, Temples & Ganga Aarti
               </summary>
-              <ul className="mt-4 space-y-2 text-gray-700">
+              <ul className="mt-4 space-y-2 text-gray-700 text-sm sm:text-base">
                 <li>• Morning Aarti at Assi Ghat</li>
                 <li>• Ghat walk till Dashashwamedh</li>
                 <li>• Kashi Vishwanath & Kal Bhairav Darshan</li>
@@ -178,10 +178,10 @@ export default function Kashi() {
             </details>
 
             <details className="bg-white p-6 rounded-2xl shadow">
-              <summary className="cursor-pointer text-xl font-bold">
+              <summary className="cursor-pointer text-lg sm:text-xl font-bold">
                 Day 2 – Boat Ride & Culture
               </summary>
-              <ul className="mt-4 space-y-2 text-gray-700">
+              <ul className="mt-4 space-y-2 text-gray-700 text-sm sm:text-base">
                 <li>• Sunrise boat ride on Ganga</li>
                 <li>• BHU & Vishwanath Temple</li>
                 <li>• Sankat Mochan & Tulsi Manas Mandir</li>
@@ -192,20 +192,20 @@ export default function Kashi() {
       </section>
 
       {/* BOOKING CTA */}
-<section className="py-24 px-4 bg-orange-50 text-center">
+<section className="py-16 md:py-24 px-4 bg-orange-50 text-center">
   <div className="max-w-3xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-6">
       Plan Your Trip to Kashi
     </h2>
 
-    <p className="text-lg text-gray-600 mb-10">
+    <p className="text-base sm:text-lg text-gray-600 mb-8 md:mb-10">
       Share your travel preferences with us and we’ll design a soulful Kashi
       experience tailored just for you.
     </p>
 
     <a
       href="/#enquiry"
-      className="inline-block px-12 py-4 rounded-full bg-orange-600 hover:bg-orange-500 text-white text-lg font-bold shadow-xl transition-transform hover:scale-105"
+      className="inline-block px-8 sm:px-12 py-3 sm:py-4 rounded-full bg-orange-600 hover:bg-orange-500 text-white text-base sm:text-lg font-bold shadow-xl transition-transform hover:scale-105"
     >
       Book Now
     </a>

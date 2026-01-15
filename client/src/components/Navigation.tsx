@@ -385,7 +385,7 @@ export function Navigation() {
             </div>
 
             <Link
-              href="/admin"
+              href="/admin/login"
               onClick={() => setIsOpen(false)}
               className="block py-2 text-orange-400 font-semibold"
             >

@@ -77,9 +77,9 @@
 //       </section>
 
 //       {/* ================= GALLERY ================= */}
-//       <section id="gallery" className="py-24 bg-white px-4">
+//       <section id="gallery" className="py-16 md:py-24 bg-white px-4">
 //         <div className="max-w-6xl mx-auto text-center mb-16">
-//           <h2 className="text-4xl font-bold mb-6">
+//           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
 //             Spiritual Destinations
 //           </h2>
 //           <p className="text-xl text-gray-600">
@@ -124,7 +124,7 @@
 //       </section>
 
 //       {/* ================= WHY US ================= */}
-//       <section id="why-us" className="py-24 bg-orange-50 px-4">
+//       <section id="why-us" className="py-16 md:py-24 bg-orange-50 px-4">
 //         <div className="max-w-6xl mx-auto text-center">
 //           <h2 className="text-4xl font-bold mb-12">
 //             Why Choose Nerds Travel
@@ -139,7 +139,7 @@
 //             ].map((text, i) => (
 //               <div
 //                 key={i}
-//                 className="bg-white p-6 rounded-2xl shadow text-lg text-gray-700"
+//                 className="bg-white p-6 rounded-2xl shadow text-base sm:text-lg text-gray-700"
 //               >
 //                 {text}
 //               </div>
@@ -149,9 +149,9 @@
 //       </section>
 
 //       {/* ================= EXPERIENCES ================= */}
-//       <section id="experiences" className="py-24 bg-white px-4">
+//       <section id="experiences" className="py-16 md:py-24 bg-white px-4">
 //         <div className="max-w-6xl mx-auto text-center">
-//           <h2 className="text-4xl font-bold mb-6">
+//           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
 //             Spiritual Experiences
 //           </h2>
 //           <p className="text-xl text-gray-600 mb-12">
@@ -166,7 +166,7 @@
 //             ].map((text, i) => (
 //               <div
 //                 key={i}
-//                 className="bg-orange-50 p-6 rounded-2xl shadow text-lg text-gray-700"
+//                 className="bg-orange-50 p-6 rounded-2xl shadow text-base sm:text-lg text-gray-700"
 //               >
 //                 {text}
 //               </div>
@@ -176,9 +176,9 @@
 //       </section>
 
 //       {/* ================= PACKAGES ================= */}
-//       <section id="packages" className="py-24 bg-orange-50 px-4">
+//       <section id="packages" className="py-16 md:py-24 bg-orange-50 px-4">
 //         <div className="max-w-6xl mx-auto text-center">
-//           <h2 className="text-4xl font-bold mb-6">
+//           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
 //             Popular Spiritual Packages
 //           </h2>
 
@@ -190,7 +190,7 @@
 //             ].map((text, i) => (
 //               <div
 //                 key={i}
-//                 className="bg-white p-6 rounded-2xl shadow text-lg text-gray-700"
+//                 className="bg-white p-6 rounded-2xl shadow text-base sm:text-lg text-gray-700"
 //               >
 //                 {text}
 //               </div>
@@ -200,13 +200,13 @@
 //       </section>
 
 //       {/* ================= ENQUIRY ================= */}
-//       <section id="enquiry" className="py-24 bg-white px-4">
-//         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+//       <section id="enquiry" className="py-16 md:py-24 bg-white px-4">
+//         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
 //           <div>
-//             <h2 className="text-4xl font-bold mb-6">
+//             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
 //               Plan Your Spiritual Journey
 //             </h2>
-//             <p className="text-lg text-gray-600">
+//             <p className="text-base sm:text-lg text-gray-600">
 //               Share your preferred destinations and we’ll design the perfect
 //               spiritual trip for you.
 //             </p>
@@ -513,7 +513,7 @@
 //               <span className="text-orange-200">{" />"}</span>
 //             </div>
 
-//             <p className="text-base md:text-lg text-gray-200 mb-8">
+//             <p className="text-base md:text-lg text-gray-200 text-sm sm:text-base mb-8">
 //               Complete travel packages with verified stays, meals, local
 //               transfers and sightseeing—across India.
 //             </p>
@@ -547,9 +547,9 @@
 //       </section>
 
 //       {/* CITIES */}
-//       <section className="py-24 bg-white px-4">
+//       <section className="py-16 md:py-24 bg-white px-4">
 //         <div className="max-w-6xl mx-auto text-center mb-14">
-//           <h2 className="text-4xl font-bold mb-4">
+//           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
 //             Popular Cities & Destinations
 //           </h2>
 //           <p className="text-xl text-gray-600">
@@ -563,13 +563,13 @@
 //       </section>
 
 //       {/* ENQUIRY */}
-//       <section id="enquiry" className="py-24 bg-orange-50 px-4">
-//         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+//       <section id="enquiry" className="py-16 md:py-24 bg-orange-50 px-4">
+//         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
 //           <div>
-//             <h2 className="text-4xl font-bold mb-6">
+//             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
 //               Plan Your Perfect Trip
 //             </h2>
-//             <p className="text-lg text-gray-600">
+//             <p className="text-base sm:text-lg text-gray-600">
 //               Tell us your travel plan — we’ll handle everything.
 //             </p>
 //           </div>
@@ -729,7 +729,7 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
       <div className="hidden md:grid grid-cols-3 gap-6">
         {visibleDesktop.map((c) => (
           <Link key={c.title} href={c.href}>
-            <div className="bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition">
+            <div className="bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition h-[380px] lg:h-[420px] flex flex-col">
               <div className="h-44 relative">
                 <img src={c.image} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/40" />
@@ -738,7 +738,7 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
                   <p className="text-sm">{c.subtitle}</p>
                 </div>
               </div>
-              <div className="p-5 bg-orange-50">
+              <div className="p-5 bg-orange-50 flex-1 flex flex-col overflow-hidden">
                 <p className="font-semibold text-orange-700 mb-2">
                   Best Highlights
                 </p>
@@ -747,9 +747,11 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
                     <li key={h}>• {h}</li>
                   ))}
                 </ul>
-                <p className="mt-3 text-sm text-orange-700 font-semibold">
-                  View Details →
-                </p>
+                <div className="flex justify-end mt-12">
+                  <p className="text-sm text-orange-700 font-semibold">
+                    View Details →
+                  </p>
+                </div>
               </div>
             </div>
           </Link>
@@ -757,10 +759,10 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory">
+      <div className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory px-2">
         {cities.map((c) => (
           <Link key={c.title} href={c.href}>
-            <div className="min-w-[85%] snap-center bg-white rounded-2xl shadow overflow-hidden">
+            <div className="min-w-full snap-center bg-white rounded-2xl shadow flex flex-col">
               <div className="h-44 relative">
                 <img src={c.image} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/40" />
@@ -799,19 +801,19 @@ export default function Home() {
       <Navigation />
 
       {/* HERO */}
-      <section className="relative h-[80vh] bg-black">
+      <section className="relative h-[70vh] md:h-[80vh] bg-black">
         <img
           src={heroImg}
           className="absolute inset-0 w-full h-[100%] object-[center_50%] "
         />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
-          <div className="max-w-4xl bg-grey/10 backdrop p-10 rounded-2xl text-white">
-            <h1 className="text-5xl md:text-4xl text-italic font-bold mb-4 text-white">
+          <div className="max-w-4xl bg-grey/10 backdrop p-6 sm:p-8 md:p-10 rounded-2xl text-white">
+            <h1 className="text-3xl sm:text-4xl md:text-4xl text-italic font-bold mb-4 text-white">
               Nerds Travel, Where Every Journey Becomes a Story
             </h1>
-            <p className="text-xl mb-6">{typing}</p>
-            <p className="text-gray-200 mb-8">
+            <p className="text-base sm:text-lg md:text-xl mb-6">{typing}</p>
+            <p className="text-gray-200 text-sm sm:text-base mb-8">
               Nerds Travel offers complete tour solutions including hotels,
               meals, transportation, sightseeing and expert guidance for
               spiritual, leisure and cultural destinations across India.
@@ -819,14 +821,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#enquiry"
-                className="px-8 py-3 bg-orange-600 rounded-full font-semibold"
+                className="w-full sm:w-auto px-8 py-3 bg-orange-600 rounded-full font-semibold"
               >
                 Get Custom Quote
               </a>
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
-                className="px-8 py-3 bg-green-600 rounded-full font-semibold"
+                className="w-full sm:w-auto px-8 py-3 bg-green-600 rounded-full font-semibold"
               >
                 WhatsApp Now
               </a>
@@ -836,11 +838,11 @@ export default function Home() {
       </section>
 
       {/* CITIES */}
-      <section className="py-24 px-4">
-        <h2 className="text-4xl font-bold text-center mb-4">
+      <section className="py-16 md:py-24 px-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
           Popular Cities & Destinations
         </h2>
-        <p className="text-center text-gray-600 mb-12">
+        <p className="text-center text-gray-600 text-sm sm:text-base mb-10 md:mb-12">
           Spiritual journeys, hill stations, beach holidays & cultural tours
         </p>
         <div className="max-w-6xl mx-auto">
@@ -849,15 +851,15 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-24 bg-white px-4">
+      <section className="py-16 md:py-24 bg-white px-4">
         <div className="max-w-6xl mx-auto text-center mb-14">
-          <h2 className="text-4xl font-bold mb-4">Our Travel Services</h2>
-          <p className="text-gray-600 text-lg">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Our Travel Services</h2>
+          <p className="text-gray-600 text-base sm:text-lg">
             Complete travel assistance from planning to journey completion
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
           {[
             ["🛕", "Temple Darshan"],
             ["🧭", "Tour Guide"],
@@ -868,7 +870,7 @@ export default function Home() {
           ].map(([icon, title]) => (
             <div
               key={title}
-              className="bg-orange-50 p-6 rounded-xl hover:shadow-lg transition"
+              className="bg-orange-50 p-4 sm:p-6 rounded-xl hover:shadow-lg transition"
             >
               <div className="text-4xl mb-3">{icon}</div>
               <h3 className="font-bold">{title}</h3>
@@ -878,25 +880,25 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section className="py-24 bg-gray-50 px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+      <section className="py-16 md:py-24 bg-gray-50 px-4">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
           <div>
-            <h2 className="text-4xl font-bold mb-6">About Nerds Travel</h2>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">About Nerds Travel</h2>
+            <p className="text-gray-700 text-sm sm:text-base mb-4 leading-relaxed">
               Nerds Travel is a trusted Indian travel agency specializing in
               spiritual tours, family holidays, leisure trips and customized
               travel packages. We focus on comfort, safety, affordability and
               customer satisfaction.
             </p>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
               From sacred destinations like Varanasi, Ayodhya and Prayagraj to
               scenic locations like Kashmir, Kerala, Manali and Goa, we design
               memorable journeys for travellers of all age groups.
             </p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl shadow">
-            <ul className="space-y-4 text-lg text-gray-700">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow">
+            <ul className="space-y-4 text-base sm:text-lg text-gray-700">
               <li>✅ Peace of Mind Travel</li>
               <li>✅ Transparent Pricing</li>
               <li>✅ Trusted Services</li>
@@ -907,9 +909,9 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white px-4">
+      <section className="py-16 md:py-24 bg-white px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 md:mb-12">
             Have Questions? We’ve Got Answers
           </h2>
 
@@ -932,7 +934,7 @@ export default function Home() {
                 "Yes, we specialize in spiritual destinations across India.",
               ],
             ].map(([q, a]) => (
-              <div key={q} className="bg-gray-50 p-6 rounded-xl shadow">
+              <div key={q} className="bg-gray-50 p-5 sm:p-6 rounded-xl shadow">
                 <h3 className="font-semibold mb-2">{q}</h3>
                 <p className="text-gray-600">{a}</p>
               </div>
@@ -942,13 +944,13 @@ export default function Home() {
       </section>
 
       {/* ENQUIRY */}
-      <section id="enquiry" className="py-24 bg-orange-50 px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+      <section id="enquiry" className="py-16 md:py-24 bg-orange-50 px-4">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
           <div>
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Plan Your Perfect Trip
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600">
               Share your travel plan and get a customized package designed just
               for you.
             </p>

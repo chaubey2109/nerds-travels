@@ -2,15 +2,15 @@ import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-20 pb-10 rounded-t-[3rem] mt-20 relative overflow-hidden">
+    <footer className="bg-gray-900 text-white pt-16 md:pt-20 pb-8 md:pb-10 rounded-t-[3rem] mt-20 relative overflow-hidden">
       {/* Abstract decorative circles */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-orange-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-16">
           <div className="space-y-6">
-            <h2 className="text-3xl font-display font-bold text-orange-400">Nerds Travel</h2>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-orange-400">Nerds Travel</h2>
             <p className="text-gray-400 leading-relaxed">
               Experience the spiritual capital of India with guides who know every narrow lane, ancient temple, and hidden gem of Kashi.
             </p>

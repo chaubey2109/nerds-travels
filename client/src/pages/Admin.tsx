@@ -158,11 +158,11 @@ export default function Admin() {
     <div className="min-h-screen flex flex-col bg-background">
       <AdminNavbar />
 
-      <main className="flex-1 p-6 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full">
         {/* SEARCH + ACTIONS */}
         <div className="flex flex-col md:flex-row gap-4 mb-5">
           <input
-            className="h-11 px-4 rounded-lg border w-full md:w-1/2"
+            className="h-11 px-4 rounded-lg border w-full md:w-1/2 text-sm sm:text-base"
             placeholder="Search name / email / phone"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -190,7 +190,7 @@ export default function Admin() {
 
         {/* TABLE */}
         <div className="overflow-x-auto border rounded-xl bg-white">
-          <table className="w-full text-sm">
+          <table className="w-full text-xs sm:text-sm">
             <thead className="bg-gray-100">
               <tr>
                 <th className="p-3">
