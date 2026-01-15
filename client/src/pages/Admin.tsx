@@ -12,27 +12,29 @@ type Enquiry = {
   email: string;
   phone: string;
   cities?: string[];
+  days: number;
   message?: string;
   createdAt: string;
 };
 
-/* ================= CONSTANTS ================= */
-const CITY_OPTIONS = [
-  "Kashi (Varanasi)",
-  "Ayodhya",
-  "Prayagraj",
-  "Mathura – Vrindavan",
-];
-
-/* ================= CSV HELPER ================= */
+/* ================= CSV DOWNLOAD ================= */
 function downloadCSV(data: Enquiry[]) {
-  const headers = ["Name", "Email", "Phone", "Cities", "Message", "Date"];
+  const headers = [
+    "Name",
+    "Email",
+    "Phone",
+    "Cities",
+    "Days",
+    "Message",
+    "Created At",
+  ];
 
   const rows = data.map((e) => [
     e.name,
     e.email,
     e.phone,
     Array.isArray(e.cities) ? e.cities.join(" | ") : "",
+    e.days,
     e.message || "",
     new Date(e.createdAt).toLocaleString(),
   ]);
@@ -48,10 +50,27 @@ function downloadCSV(data: Enquiry[]) {
 
   const link = document.createElement("a");
   link.href = url;
-  link.setAttribute("download", "enquiries.csv");
+  link.download = "enquiries.csv";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+/* ================= WHATSAPP MESSAGE ================= */
+function buildWhatsAppMessage(e: Enquiry) {
+  return encodeURIComponent(
+    `Hi ${e.name} 🙏
+
+Thank you for contacting *Nerds Travel* ✨
+
+📍 Cities: ${
+      Array.isArray(e.cities) ? e.cities.join(", ") : "N/A"
+    }
+🗓 Trip Days: ${e.days}
+📞 Phone: ${e.phone}
+
+Please share your preferred travel date & budget.`
+  );
 }
 
 /* ================= COMPONENT ================= */
@@ -60,10 +79,9 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
-  const [cityFilter, setCityFilter] = useState("All");
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
-  /* ================= FETCH DATA ================= */
+  /* ================= FETCH ================= */
   useEffect(() => {
     fetch("/api/enquiries")
       .then((res) => res.json())
@@ -84,21 +102,14 @@ export default function Admin() {
   /* ================= FILTER ================= */
   const filteredData = useMemo(() => {
     return data.filter((e) => {
-      const text = search.toLowerCase();
-
-      const matchesSearch =
-        e.name.toLowerCase().includes(text) ||
-        e.email.toLowerCase().includes(text) ||
-        e.phone.toLowerCase().includes(text);
-
-      const matchesCity =
-        cityFilter === "All"
-          ? true
-          : Array.isArray(e.cities) && e.cities.includes(cityFilter);
-
-      return matchesSearch && matchesCity;
+      const t = search.toLowerCase();
+      return (
+        e.name.toLowerCase().includes(t) ||
+        e.email.toLowerCase().includes(t) ||
+        e.phone.includes(t)
+      );
     });
-  }, [data, search, cityFilter]);
+  }, [data, search]);
 
   /* ================= SELECT ================= */
   const allSelected =
@@ -132,7 +143,7 @@ export default function Admin() {
   /* ================= LOADING ================= */
   if (loading) {
     return (
-      <div className="min-h-screen bg-background font-sans">
+      <div className="min-h-screen">
         <AdminNavbar />
         <p className="text-center mt-32 text-gray-500">
           Loading enquiries...
@@ -144,14 +155,12 @@ export default function Admin() {
 
   /* ================= UI ================= */
   return (
-    <div className="min-h-screen bg-background font-sans flex flex-col">
-      {/* 🔝 ADMIN NAVBAR */}
+    <div className="min-h-screen flex flex-col bg-background">
       <AdminNavbar />
 
-      {/* ================= CONTENT ================= */}
-      <main className="flex-1 p-6 pt-6 max-w-7xl mx-auto w-full">
-        {/* FILTERS */}
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+      <main className="flex-1 p-6 max-w-7xl mx-auto w-full">
+        {/* SEARCH + ACTIONS */}
+        <div className="flex flex-col md:flex-row gap-4 mb-5">
           <input
             className="h-11 px-4 rounded-lg border w-full md:w-1/2"
             placeholder="Search name / email / phone"
@@ -159,52 +168,32 @@ export default function Admin() {
             onChange={(e) => setSearch(e.target.value)}
           />
 
-          <select
-            value={cityFilter}
-            onChange={(e) => setCityFilter(e.target.value)}
-            className="h-11 px-4 rounded-lg border w-full md:w-1/4"
-          >
-            <option value="All">All Cities</option>
-            {CITY_OPTIONS.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* ACTION BAR */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="px-4 py-2 rounded-xl bg-gray-100 text-sm font-medium">
-            Total: <span className="font-bold">{filteredData.length}</span>
-          </div>
-
           <button
-            title="Delete selected"
-            onClick={bulkDelete}
-            disabled={!selectedIds.length}
-            className={`p-2 rounded-full ${
-              selectedIds.length
-                ? "text-red-600 hover:bg-red-100"
-                : "text-gray-400"
-            }`}
+            onClick={() => downloadCSV(filteredData)}
+            className="h-11 px-4 rounded-lg bg-blue-600 text-white"
           >
-            <Trash2 className="h-5 w-5" />
+            Download CSV
           </button>
 
           <button
-            title="Download CSV"
-            onClick={() => downloadCSV(filteredData)}
-            className="p-2 rounded-full text-blue-600 hover:bg-blue-100"
+            onClick={bulkDelete}
+            disabled={!selectedIds.length}
+            className={`h-11 px-4 rounded-lg ${
+              selectedIds.length
+                ? "bg-red-600 text-white"
+                : "bg-gray-300 text-gray-600"
+            }`}
           >
-            <Download className="h-5 w-5" />
+            Delete Selected
           </button>
         </div>
 
         {/* TABLE */}
-        <div className="overflow-x-auto rounded-xl border bg-white">
+        <div className="overflow-x-auto border rounded-xl bg-white">
           <table className="w-full text-sm">
-            <thead className="bg-gray-100 text-gray-700">
+            <thead className="bg-gray-100">
               <tr>
-                <th className="p-3 w-10">
+                <th className="p-3">
                   <input
                     type="checkbox"
                     checked={allSelected}
@@ -215,6 +204,7 @@ export default function Admin() {
                 <th className="p-3">Email</th>
                 <th className="p-3">Phone</th>
                 <th className="p-3">Cities</th>
+                <th className="p-3">Days</th>
                 <th className="p-3">Message</th>
                 <th className="p-3">Date</th>
                 <th className="p-3 text-center">Action</th>
@@ -224,14 +214,11 @@ export default function Admin() {
             <tbody>
               {filteredData.map((e) => {
                 const selected = selectedIds.includes(e.id);
-                const safeCities = Array.isArray(e.cities)
-                  ? e.cities.join(", ")
-                  : "N/A";
 
                 return (
                   <tr
                     key={e.id}
-                    className={`group border-t hover:bg-gray-50 ${
+                    className={`border-t ${
                       selected ? "bg-orange-50" : ""
                     }`}
                   >
@@ -246,23 +233,36 @@ export default function Admin() {
                     <td className="p-3 font-medium">{e.name}</td>
                     <td className="p-3">{e.email}</td>
                     <td className="p-3">{e.phone}</td>
-                    <td className="p-3">{safeCities}</td>
-                    <td className="p-3 truncate max-w-xs">
+                    <td className="p-3">
+                      {Array.isArray(e.cities)
+                        ? e.cities.join(", ")
+                        : "-"}
+                    </td>
+                    <td className="p-3">{e.days}</td>
+                    <td className="p-3 max-w-xs truncate">
                       {e.message || "-"}
                     </td>
                     <td className="p-3 text-gray-500">
                       {new Date(e.createdAt).toLocaleString()}
                     </td>
 
+                    {/* ACTIONS */}
                     <td className="p-3 flex justify-center gap-3">
+                      {/* WHATSAPP */}
                       <a
-                        href={`https://wa.me/${e.phone.replace(/\D/g, "")}`}
+                        href={`https://wa.me/${e.phone.replace(
+                          /\D/g,
+                          ""
+                        )}?text=${buildWhatsAppMessage(e)}`}
                         target="_blank"
+                        rel="noreferrer"
                         className="p-2 rounded-full text-green-600 hover:bg-green-100"
+                        title="Send WhatsApp"
                       >
                         <FaWhatsapp className="h-5 w-5" />
                       </a>
 
+                      {/* DELETE */}
                       <button
                         onClick={async () => {
                           if (!confirm("Delete this enquiry?")) return;
@@ -271,9 +271,6 @@ export default function Admin() {
                           });
                           setData((prev) =>
                             prev.filter((x) => x.id !== e.id)
-                          );
-                          setSelectedIds((prev) =>
-                            prev.filter((x) => x !== e.id)
                           );
                         }}
                         className="p-2 rounded-full text-red-600 hover:bg-red-100"

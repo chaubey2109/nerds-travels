@@ -67,6 +67,7 @@ export async function registerRoutes(
         email: input.email,
         phone: input.phone,
         cities: input.cities,
+        days: input.days,
         message: input.message,
       });
 

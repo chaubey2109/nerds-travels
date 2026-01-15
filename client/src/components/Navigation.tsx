@@ -296,12 +296,17 @@ export function Navigation() {
 
               {exploreOpen && (
                 <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-56">
-                  <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+                  <div className="bg-white rounded-xl shadow-xl overflow-hidden
+             max-h-56 overflow-y-auto thin-scrollbar">
                     {[
                       ["Kashi", "/kashi"],
                       ["Ayodhya", "/ayodhya"],
                       ["Prayagraj", "/prayagraj"],
-                      ["Mathura – Vrindavan", "/mathura-vrindavan"],
+                      ["Goa", "/goa"],
+                      ["Jaipur", "/Jaipur"],
+                      ["Kashmir", "/Kashmir"],
+                      ["Manali", "/Manali"],
+                      ["Kerala", "/Kerala"],
                     ].map(([name, href]) => (
                       <Link
                         key={name}
@@ -319,7 +324,7 @@ export function Navigation() {
 
             {/* ADMIN */}
             <Link
-              href="/admin"
+              href="/admin/login"
               className="text-sm font-semibold text-orange-400 hover:text-orange-300 transition"
             >
               Admin
@@ -362,7 +367,11 @@ export function Navigation() {
                 ["Kashi", "/kashi"],
                 ["Ayodhya", "/ayodhya"],
                 ["Prayagraj", "/prayagraj"],
-                ["Mathura – Vrindavan", "/mathura-vrindavan"],
+                ["Goa", "/goa"],
+                ["Jaipur", "/Jaipur"],
+                ["Kashmir", "/Kashmir"],
+                ["Manali", "/Manali"],
+                ["Kerala", "/Kerala"],
               ].map(([name, href]) => (
                 <Link
                   key={name}

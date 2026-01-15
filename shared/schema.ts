@@ -10,17 +10,27 @@ export const enquiries = pgTable("enquiries", {
   phone: text("phone").notNull(),
 
   cities: text("cities").array().notNull(), // ✅ ADD THIS
-
+  days: text("days").notNull(),
   message: text("message"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 /* 🔥 INSERT SCHEMA — cities INCLUDED */
-export const insertEnquirySchema = createInsertSchema(enquiries).pick({
+const daysSchema = z.coerce
+  .number()
+  .int("Days must be a whole number")
+  .min(1, "Trip must be at least 1 day")
+  .max(30, "Trip cannot be more than 30 days")
+  .transform((val) => String(val));
+
+export const insertEnquirySchema = createInsertSchema(enquiries, {
+  days: daysSchema,
+}).pick({
   name: true,
   email: true,
   phone: true,
   cities: true,      // ✅ ADD THIS
+  days: true,
   message: true,
 });
 
