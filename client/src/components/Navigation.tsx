@@ -190,10 +190,11 @@
 //     </nav>
 //   );
 // }
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import logo from "@assets/stock_images/web_logo.png";
 
 type NavLink = {
   name: string;
@@ -204,7 +205,9 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [exploreOpen, setExploreOpen] = useState<boolean>(false);
+  const [mobileExploreOpen, setMobileExploreOpen] = useState<boolean>(false);
 
+  const [location, setLocation] = useLocation();
   const exploreRef = useRef<HTMLDivElement | null>(null);
 
   /* ===== Scroll Background ===== */
@@ -238,6 +241,13 @@ export function Navigation() {
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
+    setExploreOpen(false);
+    setMobileExploreOpen(false);
+
+    if (location !== "/") {
+      setLocation(id === "home" ? "/" : `/#${id}`);
+      return;
+    }
 
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -255,14 +265,20 @@ export function Navigation() {
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-black/40 backdrop-blur-xl shadow-lg py-3"
-          : "bg-black/20 backdrop-blur-md py-6"
+          : "bg-black/20 backdrop-blur-md py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* LOGO */}
-          <Link href="/">
-            <span className="text-2xl font-bold text-white cursor-pointer">
+          <Link href="/" className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="Nerds Travel"
+              className="h-7 w-7 sm:h-14 sm:w-14 rounded-full bg-white p-1 
+             object-cover object-center scale-110"
+            />
+            <span className="text-2xl sm:text-3xl font-bold text-white">
               Nerds Travel
             </span>
           </Link>
@@ -340,7 +356,15 @@ export function Navigation() {
 
           {/* ===== MOBILE BUTTON ===== */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() =>
+              setIsOpen((prev) => {
+                const next = !prev;
+                if (!next) {
+                  setMobileExploreOpen(false);
+                }
+                return next;
+              })
+            }
             className="md:hidden text-white"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -363,25 +387,47 @@ export function Navigation() {
             ))}
 
             <div className="border-t border-white/10 pt-3">
-              {[
-                ["Kashi", "/kashi"],
-                ["Ayodhya", "/ayodhya"],
-                ["Prayagraj", "/prayagraj"],
-                ["Goa", "/goa"],
-                ["Jaipur", "/Jaipur"],
-                ["Kashmir", "/Kashmir"],
-                ["Manali", "/Manali"],
-                ["Kerala", "/Kerala"],
-              ].map(([name, href]) => (
-                <Link
-                  key={name}
-                  href={href}
-                  onClick={() => setIsOpen(false)}
-                  className="block py-2 text-white/80"
-                >
-                  {name}
-                </Link>
-              ))}
+              <button
+                onClick={() => setMobileExploreOpen((prev) => !prev)}
+                className="mx-auto flex items-center gap-2 text-white/90"
+                aria-expanded={mobileExploreOpen}
+                aria-controls="mobile-explore-menu"
+              >
+                Explore
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${
+                    mobileExploreOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {mobileExploreOpen && (
+                <div id="mobile-explore-menu" className="mt-3 space-y-1">
+                  {[
+                    ["Kashi", "/kashi"],
+                    ["Ayodhya", "/ayodhya"],
+                    ["Prayagraj", "/prayagraj"],
+                    ["Goa", "/goa"],
+                    ["Jaipur", "/Jaipur"],
+                    ["Kashmir", "/Kashmir"],
+                    ["Manali", "/Manali"],
+                    ["Kerala", "/Kerala"],
+                  ].map(([name, href]) => (
+                    <Link
+                      key={name}
+                      href={href}
+                      onClick={() => {
+                        setIsOpen(false);
+                        setMobileExploreOpen(false);
+                      }}
+                      className="block py-2 text-white/80"
+                    >
+                      {name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
             <Link

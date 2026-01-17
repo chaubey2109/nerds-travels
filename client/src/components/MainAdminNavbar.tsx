@@ -1,8 +1,10 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, FileText, LogOut, HomeIcon } from "lucide-react";
+import { LayoutDashboard, LogOut, HomeIcon, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export function AdminNavbar() {
   const [location] = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
     {
@@ -39,7 +41,7 @@ export function AdminNavbar() {
           </div>
 
           {/* NAV LINKS */}
-          <div className="flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
               const active = location === item.href;
               return (
@@ -67,8 +69,56 @@ export function AdminNavbar() {
               Logout
             </Link>
           </div>
+
+          {/* MOBILE TOGGLE */}
+          <button
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="md:hidden text-gray-700 hover:text-orange-500 transition"
+            aria-expanded={mobileOpen}
+            aria-controls="admin-mobile-menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
+
+      {/* MOBILE MENU */}
+      {mobileOpen && (
+        <div
+          id="admin-mobile-menu"
+          className="md:hidden border-t border-gray-200 bg-white"
+        >
+          <div className="px-6 py-4 space-y-2">
+            {navItems.map((item) => {
+              const active = location === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                    active
+                      ? "text-orange-600 bg-orange-50"
+                      : "text-gray-700 hover:text-orange-500 hover:bg-orange-50/60"
+                  }`}
+                >
+                  {item.icon}
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            <Link
+              href="/"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 transition"
+            >
+              <LogOut size={18} />
+              Logout
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

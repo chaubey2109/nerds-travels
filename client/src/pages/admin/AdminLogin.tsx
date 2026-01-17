@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Lock, Mail, ShieldCheck, Eye, EyeOff } from "lucide-react";
 
@@ -28,6 +28,13 @@ export default function AdminLogin() {
       {/* ✨ Background glow */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-orange-500/30 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-orange-400/20 rounded-full blur-3xl" />
+
+      <Link
+        href="/"
+        className="absolute top-6 left-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white/90 hover:bg-white/20 transition"
+      >
+        Home
+      </Link>
 
       {/* 🔐 Login Card */}
       <div className="relative w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8">

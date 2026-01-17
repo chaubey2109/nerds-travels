@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="Nerds Travel logo">
+  <defs>
+    <style>
+      .navy { fill: #0b1f3a; }
+      .gold { fill: #d4af37; }
+      .wordmark { font-family: "Georgia", "Times New Roman", serif; font-weight: 700; }
+      .tagline { font-family: "Georgia", "Times New Roman", serif; font-weight: 400; letter-spacing: 2px; }
+    </style>
+  </defs>
+  <rect width="900" height="300" fill="#ffffff"/>
+  <g transform="translate(60,50)">
+    <circle cx="100" cy="100" r="90" class="navy"/>
+    <circle cx="100" cy="100" r="86" fill="#ffffff"/>
+    <circle cx="100" cy="100" r="78" class="navy"/>
+    <text x="100" y="120" text-anchor="middle" font-size="88" class="gold wordmark">NT</text>
+  </g>
+  <g transform="translate(260,95)">
+    <text x="0" y="0" font-size="64" class="navy wordmark">Nerds Travel</text>
+    <rect x="2" y="18" width="220" height="4" class="gold"/>
+    <text x="0" y="70" font-size="18" class="navy tagline">PREMIUM TRAVEL CURATION</text>
+  </g>
+</svg>

@@ -586,6 +586,7 @@ import { Navigation } from "@/components/Navigation";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ================= IMAGES ================= */
 import heroImg from "@assets/stock_images/travel-front.jpg";
@@ -722,6 +723,7 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
     cities[(index + 1) % total],
     cities[(index + 2) % total],
   ];
+  const currentMobile = cities[index % total];
 
   return (
     <>
@@ -759,28 +761,63 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory px-2">
-        {cities.map((c) => (
-          <Link key={c.title} href={c.href}>
-            <div className="min-w-full snap-center bg-white rounded-2xl shadow flex flex-col">
-              <div className="h-44 relative">
-                <img src={c.image} className="w-full h-full object-cover" />
+      <div className="md:hidden">
+        <div className="relative px-2">
+          <Link href={currentMobile.href}>
+            <div className="bg-white rounded-2xl shadow flex flex-col">
+              <div className="h-48 relative">
+                <img
+                  src={currentMobile.image}
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute bottom-3 left-4 text-white">
-                  <h3 className="font-bold">{c.title}</h3>
-                  <p className="text-sm">{c.subtitle}</p>
+                <div className="absolute bottom-3 left-4 rounded-lg bg-black/40 px-3 py-2 text-white">
+                  <h3 className="font-bold text-white drop-shadow">
+                    {currentMobile.title}
+                  </h3>
+                  <p className="text-sm text-white/90 drop-shadow">
+                    {currentMobile.subtitle}
+                  </p>
                 </div>
               </div>
-              <div className="p-4 bg-orange-50">
-                <ul className="text-sm text-gray-700 space-y-1">
-                  {c.highlights.map((h) => (
-                    <li key={h}>• {h}</li>
+              <div className="p-4 bg-black/70">
+                <ul className="text-sm text-white/90 space-y-1">
+                  {currentMobile.highlights.map((h) => (
+                    <li key={h}>ƒ?› {h}</li>
                   ))}
                 </ul>
               </div>
             </div>
           </Link>
-        ))}
+
+          <button
+            type="button"
+            onClick={() => setIndex((i) => (i - 1 + total) % total)}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 border border-gray-200 rounded-full p-2 shadow"
+            aria-label="Previous city"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            type="button"
+            onClick={() => setIndex((i) => (i + 1) % total)}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 border border-gray-200 rounded-full p-2 shadow"
+            aria-label="Next city"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+
+        <div className="mt-3 flex items-center justify-center gap-2">
+          {cities.map((_, i) => (
+            <span
+              key={`dot-${i}`}
+              className={`h-2 w-2 rounded-full ${
+                i === index % total ? "bg-orange-500" : "bg-gray-300"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
@@ -795,6 +832,31 @@ export default function Home() {
     "Trusted Travel Partner",
   ];
   const typing = useTypewriter(slogans);
+
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (!hash) return;
+
+      if (hash === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      const target = document.getElementById(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    const timeoutId = window.setTimeout(scrollToHash, 0);
+    window.addEventListener("hashchange", scrollToHash);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">

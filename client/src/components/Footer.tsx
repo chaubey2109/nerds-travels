@@ -1,4 +1,5 @@
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export function Footer() {
   return (
@@ -15,36 +16,44 @@ export function Footer() {
               Experience the spiritual capital of India with guides who know every narrow lane, ancient temple, and hidden gem of Kashi.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-all duration-300 text-gray-400">
+              <a
+                href="https://www.instagram.com/nerds_travel/?hl=en"
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-blue-500 hover:text-white flex items-center justify-center transition-all duration-300 text-gray-400"
+              >
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all duration-300 text-gray-400">
-                <Facebook size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-all duration-300 text-gray-400">
-                <Twitter size={18} />
+              <a
+                href="https://wa.me/918601079823?text=Hello%20Nerds%20Travel%2C%20I%20want%20a%20travel%20package."
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-green-600 hover:text-white flex items-center justify-center transition-all duration-300 text-gray-400"
+              >
+                <FaWhatsapp size={18} />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-6 text-white">Top Destinations</h3>
             <ul className="space-y-4">
-              <li><a href="#about" className="text-gray-400 hover:text-orange-400 transition-colors">About Varanasi</a></li>
-              <li><a href="#gallery" className="text-gray-400 hover:text-orange-400 transition-colors">Photo Gallery</a></li>
-              <li><a href="#food" className="text-gray-400 hover:text-orange-400 transition-colors">Food & Culture</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-orange-400 transition-colors">Book a Trip</a></li>
+              <li><a href="/kashi" className="text-gray-400 hover:text-orange-400 transition-colors">Kashi</a></li>
+              <li><a href="/ayodhya" className="text-gray-400 hover:text-orange-400 transition-colors">Ayodhya</a></li>
+              <li><a href="/prayagraj" className="text-gray-400 hover:text-orange-400 transition-colors">Prayagraj</a></li>
+              <li><a href="/kashmir" className="text-gray-400 hover:text-orange-400 transition-colors">Kashmir</a></li>
+              <li><a href="/kerala" className="text-gray-400 hover:text-orange-400 transition-colors">Kerala</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white">Our Services</h3>
+            <h3 className="text-lg font-bold mb-6 text-white">Why Travel With Us</h3>
             <ul className="space-y-4">
-              <li className="text-gray-400">Temple Tours</li>
-              <li className="text-gray-400">Ghat Boat Rides</li>
-              <li className="text-gray-400">Street Food Walks</li>
-              <li className="text-gray-400">Cultural Photography</li>
-              <li className="text-gray-400">Heritage Stays</li>
+              <li className="text-gray-400">Custom itineraries</li>
+              <li className="text-gray-400">Verified stays and transport</li>
+              <li className="text-gray-400">Local guides and support</li>
+              <li className="text-gray-400">Transparent pricing</li>
+              <li className="text-gray-400">24x7 trip assistance</li>
             </ul>
           </div>
 
@@ -61,7 +70,7 @@ export function Footer() {
               </li>
               <li className="flex items-center space-x-4">
                 <Mail className="text-orange-500 shrink-0" size={20} />
-                <a href="mailto:info@nerdstravel.in" className="text-gray-400 hover:text-white transition-colors">info@nerdstravel.in</a>
+                <a href="mailto:info@nerdsstravel.in" className="text-gray-400 hover:text-white transition-colors">info@nerdsstravel.in</a>
               </li>
             </ul>
           </div>
