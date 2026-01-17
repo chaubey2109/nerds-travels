@@ -13,7 +13,7 @@ export function Footer() {
           <div className="space-y-6">
             <h2 className="text-2xl sm:text-3xl font-display font-bold text-orange-400">Nerds Travel</h2>
             <p className="text-gray-400 leading-relaxed">
-              Experience the spiritual capital of India with guides who know every narrow lane, ancient temple, and hidden gem of Kashi.
+              Curated journeys across India with trusted stays, smooth transport, and local experts guiding every step.
             </p>
             <div className="flex space-x-4">
               <a
