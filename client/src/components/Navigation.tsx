@@ -234,6 +234,7 @@ export function Navigation() {
 
   const navLinks: NavLink[] = [
     { name: "Home", id: "home" },
+    { name: "Puja", id: "puja" },
     { name: "Gallery", id: "gallery" },
     { name: "Food & Culture", id: "food" },
     { name: "Contact", id: "enquiry" },
@@ -251,6 +252,11 @@ export function Navigation() {
 
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (id === "puja") {
+      setLocation("/puja");
       return;
     }
 

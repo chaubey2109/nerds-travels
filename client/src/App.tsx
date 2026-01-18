@@ -17,6 +17,7 @@ import goa from "@/pages/goa";
 import Kashmir from "@/pages/Kashmir";
 import Jaipur from "@/pages/Jaipur";
 import Manali from "@/pages/Manali";
+import Puja from "@/pages/Puja";
 
 /* ADMIN AUTH */
 import AdminLogin from "@/pages/admin/AdminLogin";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/Kashmir" component={Kashmir} /> 
       <Route path="/Jaipur" component={Jaipur} /> 
       <Route path="/Manali" component={Manali} /> 
+      <Route path="/puja" component={Puja} />
 
 
 
