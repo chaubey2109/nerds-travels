@@ -783,7 +783,7 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
               <div className="p-4 bg-black/70">
                 <ul className="text-sm text-white/90 space-y-1">
                   {currentMobile.highlights.map((h) => (
-                    <li key={h}>ƒ?› {h}</li>
+                    <li key={h}>•{h}</li>
                   ))}
                 </ul>
               </div>
