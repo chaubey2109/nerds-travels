@@ -1,6 +1,8 @@
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+type Lang = "hi" | "en";
 
 type NavItem = {
   name: string;
@@ -9,12 +11,13 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { name: "Puja List", href: "#puja-list" },
+  { name: "Jyotish", href: "#jyotish" },
   { name: "Process", href: "#process" },
-  { name: "Consult", href: "#enquiry" },
+  { name: "Contact", href: "#contact" },
 ];
 
-export function PujaNavigation() {
-  const [isOpen, setIsOpen] = useState(false);
+export function PujaNavigation({ lang }: { lang: Lang }) {
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,73 +28,72 @@ export function PujaNavigation() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all ${
-        scrolled
-          ? "bg-white/95 backdrop-blur shadow-sm"
-          : "bg-transparent"
+      className={`fixed top-0 w-full z-50 ${
+        scrolled ? "bg-white/95 shadow-sm backdrop-blur" : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="h-16 flex items-center justify-between">
           <Link
-            href="/puja/"
-              className="font-bold text-lg text-orange-600"
-            >
-            <span className="text-orange-900">Book Your Puja</span>
+            href="/puja"
+            className="flex items-center gap-2 font-extrabold text-orange-600 tracking-wide"
+          >
+            <span className="rounded-full bg-orange-100 px-2 py-1 text-xs text-orange-700">
+              NT
+            </span>
+            <span className="text-base sm:text-lg">
+              {lang === "hi" ? "Puja Services" : "Puja Services"}
+            </span>
           </Link>
 
-
-          <div className="hidden md:flex items-center gap-6 text-sm">
+          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
             {NAV_ITEMS.map((item) => (
               <a
-                key={item.name}
+                key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-orange-600 transition"
+                className="hover:text-orange-600 transition"
               >
                 {item.name}
               </a>
             ))}
             <a
               href="/"
-              className="px-4 py-2 rounded-full bg-orange-600 text-white font-semibold"
+              className="rounded-full border border-orange-200 px-4 py-2 text-orange-700 hover:bg-orange-50 transition"
             >
-              Back to Travel
+              {lang === "hi" ? "Back to Home" : "Back to Home"}
             </a>
           </div>
 
           <button
-            className="md:hidden text-gray-900"
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-expanded={isOpen}
-            aria-controls="puja-mobile-menu"
+            className="md:hidden rounded-md border border-orange-200 p-2 text-orange-700"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-controls="puja-nav-mobile"
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X /> : <Menu />}
           </button>
         </div>
       </div>
 
-      {isOpen && (
-        <div
-          id="puja-mobile-menu"
-          className="md:hidden border-t border-orange-100 bg-white"
-        >
-          <div className="px-4 py-4 space-y-3">
+      {open && (
+        <div id="puja-nav-mobile" className="md:hidden bg-white border-t">
+          <div className="px-4 py-4 space-y-3 text-sm">
             {NAV_ITEMS.map((item) => (
               <a
-                key={item.name}
+                key={item.href}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-gray-700 font-medium"
+                onClick={() => setOpen(false)}
+                className="block font-medium text-gray-700 hover:text-orange-600"
               >
                 {item.name}
               </a>
             ))}
             <a
               href="/"
-              className="block text-orange-600 font-semibold"
-              onClick={() => setIsOpen(false)}
+              onClick={() => setOpen(false)}
+              className="block font-semibold text-orange-700"
             >
-              Back to Travel
+              {lang === "hi" ? "Back to Home" : "Back to Home"}
             </a>
           </div>
         </div>
