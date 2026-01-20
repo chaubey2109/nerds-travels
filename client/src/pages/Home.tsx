@@ -590,6 +590,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ================= IMAGES ================= */
 import heroImg from "@assets/stock_images/travel-front.jpg";
+import kashiHero from "@assets/stock_images/kashi_hero.jpg";
+// import ayodhyaHero from "@assets/stock_images/ayodhya_hero.jpg";
+import mainKashiHero from "@assets/stock_images/main_kashi.jpg";
+import manaliHero from "@assets/stock_images/main_manali.jpg";
+import keralaHero from "@assets/stock_images/main_kerala.jpg";
+import prayagrajHero from "@assets/stock_images/main_prayagraj.jpg";
+import jaipurHero from "@assets/stock_images/main_jaipur.jpg";
+import goaHero from "@assets/stock_images/main_goa.jpg";
 
 import kashiImg from "@assets/stock_images/main_kashi.jpg";
 import ayodhyaImg from "@assets/stock_images/main_ayodhya.jpg";
@@ -728,36 +736,55 @@ function CityCarousel({ cities }: { cities: CityCard[] }) {
   return (
     <>
       {/* DESKTOP */}
-      <div className="hidden md:grid grid-cols-3 gap-6">
-        {visibleDesktop.map((c) => (
-          <Link key={c.title} href={c.href}>
-            <div className="bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition h-[380px] lg:h-[420px] flex flex-col">
-              <div className="h-44 relative">
-                <img src={c.image} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute bottom-3 left-4 text-white">
-                  <h3 className="text-xl font-bold text-white">{c.title}</h3>
-                  <p className="text-sm">{c.subtitle}</p>
+      <div className="hidden md:block relative">
+        <div className="grid grid-cols-3 gap-6">
+          {visibleDesktop.map((c) => (
+            <Link key={c.title} href={c.href}>
+              <div className="bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition h-[380px] lg:h-[380px] flex flex-col">
+                <div className="h-44 relative">
+                  <img src={c.image} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/40" />
+                  <div className="absolute bottom-3 left-4 text-white">
+                    <h3 className="text-xl font-bold text-white">{c.title}</h3>
+                    <p className="text-sm">{c.subtitle}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-5 bg-orange-50 flex-1 flex flex-col overflow-hidden">
-                <p className="font-semibold text-orange-700 mb-2">
-                  Best Highlights
-                </p>
-                <ul className="text-sm text-gray-700 space-y-1">
-                  {c.highlights.map((h) => (
-                    <li key={h}>• {h}</li>
-                  ))}
-                </ul>
-                <div className="flex justify-end mt-12">
-                  <p className="text-sm text-orange-700 font-semibold">
-                    View Details →
+                <div className="p-5 bg-orange-50 flex-1 flex flex-col overflow-hidden">
+                  <p className="font-semibold text-orange-700 mb-2">
+                    Best Highlights
                   </p>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    {c.highlights.map((h) => (
+                      <li key={h}>• {h}</li>
+                    ))}
+                  </ul>
+                  <div className="flex justify-end mt-12">
+                    <p className="text-sm text-orange-700 font-semibold">
+                      Explore More &raquo;
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIndex((i) => (i - 1 + total) % total)}
+          className="absolute -left-5 top-1/2 -translate-y-1/2 bg-white/90 border border-gray-200 rounded-full p-2 shadow"
+          aria-label="Previous city"
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setIndex((i) => (i + 1) % total)}
+          className="absolute -right-5 top-1/2 -translate-y-1/2 bg-white/90 border border-gray-200 rounded-full p-2 shadow"
+          aria-label="Next city"
+        >
+          <ChevronRight size={18} />
+        </button>
       </div>
 
       {/* MOBILE */}
@@ -832,6 +859,17 @@ export default function Home() {
     "Trusted Travel Partner",
   ];
   const typing = useTypewriter(slogans);
+  const [showAllCities, setShowAllCities] = useState(false);
+  const heroImages = [kashiHero, manaliHero, keralaHero, prayagrajHero, jaipurHero, goaHero, mainKashiHero,];
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setHeroIndex((i) => (i + 1) % heroImages.length),
+      4000
+    );
+    return () => clearInterval(id);
+  }, [heroImages.length]);
 
   useEffect(() => {
     const scrollToHash = () => {
@@ -863,11 +901,19 @@ export default function Home() {
       <Navigation />
 
       {/* HERO */}
-      <section className="relative h-[70vh] md:h-[80vh] bg-black">
-        <img
-          src={heroImg}
-          className="absolute inset-0 w-full h-[100%] object-[center_50%] "
-        />
+      <section className="relative h-[70vh] md:h-[80vh] bg-black overflow-hidden">
+        <div
+          className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${heroIndex * 100}%)` }}
+        >
+          {heroImages.map((src, i) => (
+            <img
+              key={`hero-${i}`}
+              src={src}
+              className="h-80% w-full flex-shrink-0 object-cover object-[center_50%]"
+            />
+          ))}
+        </div>
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
           <div className="max-w-4xl bg-grey/10 backdrop p-6 sm:p-8 md:p-10 rounded-2xl text-white">
@@ -908,7 +954,51 @@ export default function Home() {
           Spiritual journeys, hill stations, beach holidays & cultural tours
         </p>
         <div className="max-w-6xl mx-auto">
-          <CityCarousel cities={CITIES} />
+          <div className="flex justify-end mb-4">
+            <button
+              type="button"
+              onClick={() => setShowAllCities((prev) => !prev)}
+              className="text-sm font-semibold text-orange-700"
+            >
+              {showAllCities ? "View Carousel" : "View All"}
+            </button>
+          </div>
+
+          {showAllCities ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {CITIES.map((c) => (
+                <Link key={c.title} href={c.href}>
+                  <div className="bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition h-[380px] lg:h-[420px] flex flex-col">
+                    <div className="h-44 relative">
+                      <img src={c.image} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-black/40" />
+                      <div className="absolute bottom-3 left-4 text-white">
+                        <h3 className="text-xl font-bold text-white">{c.title}</h3>
+                        <p className="text-sm">{c.subtitle}</p>
+                      </div>
+                    </div>
+                    <div className="p-5 bg-orange-50 flex-1 flex flex-col overflow-hidden">
+                      <p className="font-semibold text-orange-700 mb-2">
+                        Best Highlights
+                      </p>
+                      <ul className="text-sm text-gray-700 space-y-1">
+                        {c.highlights.map((h) => (
+                          <li key={h}>&rarr; {h}</li>
+                        ))}
+                      </ul>
+                      <div className="flex justify-end mt-12">
+                        <p className="text-sm text-orange-700 font-semibold">
+                          View Details &raquo;
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <CityCarousel cities={CITIES} />
+          )}
         </div>
       </section>
 

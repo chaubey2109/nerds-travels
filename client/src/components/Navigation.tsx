@@ -291,15 +291,12 @@ export function Navigation() {
 
           {/* ===== DESKTOP ===== */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.id)}
-                className="text-sm font-medium text-white/80 hover:text-orange-400 transition"
-              >
-                {link.name}
-              </button>
-            ))}
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-sm font-medium text-white/80 hover:text-orange-400 transition"
+            >
+              Home
+            </button>
 
             {/* ===== EXPLORE CLICK DROPDOWN ===== */}
             <div className="relative" ref={exploreRef}>
@@ -344,6 +341,18 @@ export function Navigation() {
               )}
             </div>
 
+            {navLinks
+              .filter((link) => link.id !== "home")
+              .map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.id)}
+                  className="text-sm font-medium text-white/80 hover:text-orange-400 transition"
+                >
+                  {link.name}
+                </button>
+              ))}
+
             {/* ADMIN */}
             <Link
               href="/admin/login"
@@ -382,15 +391,12 @@ export function Navigation() {
       {isOpen && (
         <div className="md:hidden bg-black/80 backdrop-blur-xl">
           <div className="px-6 py-6 space-y-3 text-center">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.id)}
-                className="block w-full py-2 text-white/90"
-              >
-                {link.name}
-              </button>
-            ))}
+            <button
+              onClick={() => scrollToSection("home")}
+              className="block w-full py-2 text-white/90"
+            >
+              Home
+            </button>
 
             <div className="border-t border-white/10 pt-3">
               <button
@@ -435,6 +441,18 @@ export function Navigation() {
                 </div>
               )}
             </div>
+
+            {navLinks
+              .filter((link) => link.id !== "home")
+              .map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.id)}
+                  className="block w-full py-2 text-white/90"
+                >
+                  {link.name}
+                </button>
+              ))}
 
             <Link
               href="/admin/login"

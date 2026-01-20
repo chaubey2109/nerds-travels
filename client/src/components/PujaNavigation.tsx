@@ -42,7 +42,7 @@ export function PujaNavigation({ lang }: { lang: Lang }) {
               NT
             </span>
             <span className="text-base sm:text-lg">
-              {lang === "hi" ? "Puja Services" : "Puja Services"}
+              {lang === "hi" ? "Vedic Rituals " : "Vedic Rituals"}
             </span>
           </Link>
 

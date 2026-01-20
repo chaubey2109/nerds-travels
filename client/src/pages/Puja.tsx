@@ -212,7 +212,7 @@ function PujaCarousel({ items }: { items: PujaItem[] }) {
   const total = items.length;
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % total), 4000);
+    const id = setInterval(() => setIndex((i) => (i + 1) % total), 2000);
     return () => clearInterval(id);
   }, [total]);
 
@@ -373,7 +373,7 @@ export default function Puja() {
             </h1>
             <p className="text-gray-600 mt-6 leading-relaxed text-lg">
               Verified acharyas, clear pricing, and complete guidance for every
-              ritual. We arrange puja services across India with support before,
+              ritual. We arrange puja and anusthan across India with support before,
               during, and after the ceremony.
             </p>
             <div className="mt-7 flex flex-col sm:flex-row gap-3">

@@ -7,7 +7,7 @@ export function PujaFooter() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <h3 className="text-xl font-bold text-orange-400">Puja Services</h3>
+            <h3 className="text-xl font-bold text-orange-400">Vedic Rituals</h3>
             <p className="text-gray-400 mt-3 leading-relaxed">
               Traditional rituals, verified acharyas, and complete support for
               your puja and jyotish needs across India.
