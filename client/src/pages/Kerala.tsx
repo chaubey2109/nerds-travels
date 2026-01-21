@@ -3,17 +3,17 @@ import { Footer } from "@/components/Footer";
 
 import heroImg from "@assets/stock_images/main_kerala.jpg";
 // import backwaterImg from "@assets/stock_images/travel-front_1.jpg";
-import teaImg from "@assets/stock_images/Kerala/image_11.jpg";
+import teaImg from "@assets/stock_images/kerala/image_11.jpg";
 // import cultureImg from "@assets/stock_images/MixCollage-25-Jul-2025-08-48-PM-378-1024x1024.jpg";
-import munnarImg from "@assets/stock_images/Kerala/image_1.jpg";
-import alleppeyImg from "@assets/stock_images/Kerala/image_2.jpg";
-import thekkadyImg from "@assets/stock_images/Kerala/image_3.jpg";
-import backwaterImg from "@assets/stock_images/Kerala/image_4.jpg";
-import cultureImg from "@assets/stock_images/Kerala/image_9.jpg";
-import hillsImg from "@assets/stock_images/Kerala/image_10.jpg";
-import image1Img from "@assets/stock_images/Kerala/image_7.jpg";
-import image2Img from "@assets/stock_images/Kerala/image_8.jpg";
-
+import munnarImg from "@assets/stock_images/kerala/image_1.jpg";
+import alleppeyImg from "@assets/stock_images/kerala/image_2.jpg";
+import thekkadyImg from "@assets/stock_images/kerala/image_3.jpg";
+import backwaterImg from "@assets/stock_images/kerala/image_4.jpg";
+import cultureImg from "@assets/stock_images/kerala/image_9.jpg";
+import hillsImg from "@assets/stock_images/kerala/image_10.jpg";
+import image1Img from "@assets/stock_images/kerala/image_7.jpg";
+import image2Img from "@assets/stock_images/kerala/image_8.jpg";
+// E:\PERSONAL\New folder\nerds-travels\attached_assets\stock_images\kerala
 const destinations = [
   {
     title: "Munnar",
